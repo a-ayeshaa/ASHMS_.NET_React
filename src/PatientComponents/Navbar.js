@@ -1,0 +1,12 @@
+const Navbar=()=>
+{
+    return(
+        <div style={{padding:"10px"}}>
+            <fieldset >
+                <a href="/patient/doctorlist"> Doctor List</a> ||
+                <a href="/patient/testlist"> Test List</a> ||
+            </fieldset>
+        </div>
+    )
+}
+export default Navbar;
