@@ -4,7 +4,9 @@ const Navbar=()=>
         <div style={{padding:"10px"}}>
             <fieldset >
                 <a href="/patient/doctorlist"> Doctor List</a> ||
-                <a href="/patient/testlist"> Test List</a> ||
+                <a href="/patient/testlist"> Test List</a> || 
+                <a href="/patient/testcart"> Test Cart</a> || 
+
             </fieldset>
         </div>
     )

@@ -6,7 +6,10 @@ const TestList = () => {
     const [tests, setTests] = useState([]);
     const [id,setId]=useState();
     const [val,setVal]=useState("");
+    const [succ, setSucc] = useState([]);
+
     useEffect(() => {
+        localStorage.setItem("_authToken","6539b349-fdb4-4c59-91dc-c10fd3f873a6");
         axiosConfig.get("/tests").then((rsp) => {
             setTests(rsp.data);
         }, (err) => {
@@ -14,8 +17,17 @@ const TestList = () => {
         })
     }, [])
 
-    const AddtoCart=()=>{
+    const AddtoCart=(event)=>{
+        event.preventDefault();
         console.log(id);
+        debugger;
+        const data={"Test_Id":id};
+        axiosConfig.post("/testcart/add",data).then((rsp)=>{
+            setSucc(rsp.data);
+            debugger
+        },(err)=>{
+            debugger
+        })
     }
     return (
         <div  style={{ marginLeft: "10px" }}>
@@ -37,9 +49,9 @@ const TestList = () => {
                             <td>{test.Name}</td>
                             <td>{test.Price}</td>
                             <td>
-                                <button onClick={(e)=>(AddtoCart(setId(test.Id),setVal(test.Name+ " added to cart")))}>
-                                    Order
-                                </button>
+                                <form onSubmit={AddtoCart}>
+                                    <input type="submit" onClick={(e)=>{setId(test.Id);}} name="addtoCart" value="ORDER"/>
+                                </form>
                             </td>
                         </tr>
                     )

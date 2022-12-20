@@ -5,16 +5,17 @@ import Navbar from "./Navbar";
 const DoctorList = () => {
     const [doctors, setDoctors] = useState([]);
     useEffect(() => {
+
         axiosConfig.get("/doctors").then((rsp) => {
             setDoctors(rsp.data);
             debugger;
         }, (err) => {
-
+            debugger;
         });
     }, [])
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <center>
                 <table border="1">
                     <thead>
@@ -24,7 +25,7 @@ const DoctorList = () => {
                             <th>Degree</th>
                             <th>Visiting Days</th>
                             <th>Session Fee</th>
-                            
+
                         </tr>
                     </thead>
                     {

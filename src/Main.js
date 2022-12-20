@@ -5,13 +5,13 @@ import Home from "./AllUserComponents/Home";
 import Login from "./AllUserComponents/Login";
 import BookAppointment from "./PatientComponents/BookAppointment";
 import DoctorList from "./PatientComponents/DoctorList";
+import TestCart from "./PatientComponents/TestCart";
 import TestList from "./PatientComponents/TestList";
 const Main = () => {
     return (
         <BrowserRouter>
             <Routes>
-
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/login" element={<Login />} />
 
                 {/* TAHMID */}
                 <Route path="/" element={<Home />} />
@@ -22,6 +22,7 @@ const Main = () => {
                 <Route path="/patient/doctorlist" element={<DoctorList />} />
                 <Route path="/patient/doctorlist/:id" element={<BookAppointment />} />
                 <Route path="/patient/testlist" element={<TestList />} />
+                <Route path="/patient/testcart" element={<TestCart />} />
             </Routes>
         </BrowserRouter>
     )
