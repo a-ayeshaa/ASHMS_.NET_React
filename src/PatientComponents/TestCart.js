@@ -3,11 +3,17 @@ import axiosConfig from "../AllUserComponents/axiosConfig";
 import Navbar from "./Navbar";
 const TestCart = () => {
     const [testcart, setTestcart] = useState([]);
+    const [name,setName] = useState([]);
     const [succ, setSucc] = useState([]);
 
     useEffect(() => {
-        localStorage.setItem("_authToken", "6539b349-fdb4-4c59-91dc-c10fd3f873a6");
-        axiosConfig.get("/testcarts").then((rsp) => {
+        // axiosConfig.get(`/patient/${localStorage.getItem("_authToken")}`).then((rsp)=>{
+        //     setName(rsp.data);
+        //     debugger
+        // },(err)=>{
+        //     debugger;
+        // })
+        axiosConfig.get("/patient/testcarts").then((rsp) => {
             setTestcart(rsp.data);
         }, (err) => {
             debugger;
@@ -17,20 +23,22 @@ const TestCart = () => {
     return (
         <div style={{ marginLeft: "10px" }}>
             <Navbar />
-            
+            <fieldset style={{ width: "50%",margin:"10px" }}>
+                Selected Tests for 
+            </fieldset>
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Test Id</th>
-                        <th>Patient Id</th>
+                        <th>Test Name</th>
+                        <th>Test Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         testcart.map((test) =>
                             <tr key={test.Id}>
-                                <td>{test.Test_Id}</td>
-                                <td>{test.Patient_Id}</td>
+                                <td>{test.TestDTO.Name}</td>
+                                <td>{test.TestDTO.Price} Bdt.</td>
                             </tr>
                         )
                     }
