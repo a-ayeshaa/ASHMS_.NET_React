@@ -1,8 +1,14 @@
 import Url from "./Url"
-const Topbar=()=>{
-    return(
+const Topbar = () => {
+    return (
         <div>
-            <Url link={"/"} name="Login"/>
+            <center>
+                <fieldset style={{ margin: "15px" }}>
+                    <Url link={"/login"} name="Login" />
+                </fieldset>
+            </center>
         </div>
     )
 }
+
+export default Topbar;

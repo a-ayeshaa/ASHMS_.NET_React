@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 const TestList = () => {
     const [tests, setTests] = useState([]);
-    const [id,setId]=useState();
+    const [id,setId]=useState(0);
     const [val,setVal]=useState("");
     const [succ, setSucc] = useState([]);
 
@@ -22,7 +22,7 @@ const TestList = () => {
         console.log(id);
         debugger;
         const data={"Test_Id":id};
-        axiosConfig.post("/testcart/add",data).then((rsp)=>{
+        axiosConfig.post("/testcarts/add",data).then((rsp)=>{
             setSucc(rsp.data);
             debugger
         },(err)=>{
@@ -50,7 +50,7 @@ const TestList = () => {
                             <td>{test.Price}</td>
                             <td>
                                 <form onSubmit={AddtoCart}>
-                                    <input type="submit" onClick={(e)=>{setId(test.Id);}} name="addtoCart" value="ORDER"/>
+                                    <input type="submit" onClick={(e)=>{setId(test.Id);setVal(test.Name+" has been added to cart")}} name="addtoCart" value="ORDER"/>
                                 </form>
                             </td>
                         </tr>
