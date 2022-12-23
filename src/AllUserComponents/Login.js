@@ -28,6 +28,10 @@ const Login = () => {
                         // else if (rsp.data.u_type == "MANAGER") {
                         //     window.location.href = "/manager/home";
                         // }
+                        else if(rsp.data.Role === "Doctor")
+                        {
+                            window.location.href = "/doctor/appointments";   
+                        }
                     }, (error) => {
                         debugger;
                     }
