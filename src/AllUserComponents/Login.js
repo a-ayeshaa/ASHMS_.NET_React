@@ -56,6 +56,7 @@ const Login = () => {
                             Password: <input onChange={(e) => { SetPassword(e.target.value) }} type="password" name="password" value={password} /> <br />
                             <span>{errs.Password ? errs.Password[0] : ''}</span><br />
                             <input type="submit" value="Login" />
+
                         </form>
                     </center>
                 </fieldset>

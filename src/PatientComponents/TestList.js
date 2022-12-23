@@ -9,7 +9,6 @@ const TestList = () => {
     const [succ, setSucc] = useState([]);
 
     useEffect(() => {
-        localStorage.setItem("_authToken","70a10e76-edec-45ca-bcab-b973ab0b6258");
         axiosConfig.get("/tests").then((rsp) => {
             setTests(rsp.data);
         }, (err) => {
@@ -35,6 +34,9 @@ const TestList = () => {
             <div style={{color:"red"}}>
                 {val}
             </div>
+            <h3>
+                Available Tests
+            </h3>
             <table border="1">
                 <thead>
                     <tr>

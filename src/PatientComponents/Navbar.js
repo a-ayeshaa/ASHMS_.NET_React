@@ -6,6 +6,7 @@ const Navbar=()=>
                 <a href="/patient/doctorlist"> Doctor List</a> ||
                 <a href="/patient/testlist"> Test List</a> || 
                 <a href="/patient/testcart"> Test Cart</a> || 
+                <a href="/patient/transactions"> Orders </a> || 
 
             </fieldset>
         </div>
