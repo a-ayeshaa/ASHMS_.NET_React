@@ -1,30 +1,38 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import Navbar from "./Navbar";
+import TotalAmount from "./TotalAmount";
 const TestCart = () => {
     const [testcart, setTestcart] = useState([]);
-    const [name,setName] = useState([]);
+    const [user, setUser] = useState("");
     const [succ, setSucc] = useState([]);
 
     useEffect(() => {
-        // axiosConfig.get(`/patient/${localStorage.getItem("_authToken")}`).then((rsp)=>{
-        //     setName(rsp.data);
-        //     debugger
-        // },(err)=>{
-        //     debugger;
-        // })
+        axiosConfig.get(`/patient/details`).then((rsp) => {
+            setUser(rsp.data.PatientDTO.Name);
+            debugger
+        }, (err) => {
+            debugger;
+        })
         axiosConfig.get("/patient/testcarts").then((rsp) => {
             setTestcart(rsp.data);
         }, (err) => {
             debugger;
         })
     }, [])
-
+    const handleSubmit = () => {
+        axiosConfig.get("/testtransactions/add").then((rsp) => {
+            window.location.href="/patient/transactions";
+            debugger
+        }, (err) => {
+            debugger
+        })
+    }
     return (
         <div style={{ marginLeft: "10px" }}>
             <Navbar />
-            <fieldset style={{ width: "50%",margin:"10px" }}>
-                Selected Tests for 
+            <fieldset style={{ width: "50%", margin: "10px" }}>
+                Selected Tests for {user}
             </fieldset>
             <table border="1">
                 <thead>
@@ -44,7 +52,13 @@ const TestCart = () => {
                     }
                 </tbody>
             </table>
+
+            <TotalAmount />
+
+            <br />
+            <button onClick={() => { handleSubmit() }}>ORDER</button>
         </div>
+
     )
 }
 

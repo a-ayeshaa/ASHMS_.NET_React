@@ -5,6 +5,7 @@ import Home from "./AllUserComponents/Home";
 import Login from "./AllUserComponents/Login";
 import BookAppointment from "./PatientComponents/BookAppointment";
 import DoctorList from "./PatientComponents/DoctorList";
+import Transactions from "./PatientComponents/Transactions";
 import TestCart from "./PatientComponents/TestCart";
 import TestList from "./PatientComponents/TestList";
 const Main = () => {
@@ -23,6 +24,7 @@ const Main = () => {
                 <Route path="/patient/doctorlist/:id" element={<BookAppointment />} />
                 <Route path="/patient/testlist" element={<TestList />} />
                 <Route path="/patient/testcart" element={<TestCart />} />
+                <Route path="/patient/transactions" element={<Transactions />} />
             </Routes>
         </BrowserRouter>
     )

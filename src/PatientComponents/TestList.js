@@ -9,7 +9,6 @@ const TestList = () => {
     const [succ, setSucc] = useState([]);
 
     useEffect(() => {
-        localStorage.setItem("_authToken","6539b349-fdb4-4c59-91dc-c10fd3f873a6");
         axiosConfig.get("/tests").then((rsp) => {
             setTests(rsp.data);
         }, (err) => {
