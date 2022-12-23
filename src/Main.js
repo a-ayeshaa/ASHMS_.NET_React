@@ -8,6 +8,7 @@ import DoctorList from "./PatientComponents/DoctorList";
 import TestCart from "./PatientComponents/TestCart";
 import TestList from "./PatientComponents/TestList";
 import ViewAppointments from "./DoctorComponents/ViewAppointments";
+import AppointmentDetails from "./DoctorComponents/AppointmentDetails";
 const Main = () => {
     return (
         <BrowserRouter>
@@ -27,6 +28,7 @@ const Main = () => {
 
                 {/*SAMEEN*/}
                 <Route path="/doctor/appointments" element={<ViewAppointments />} />
+                <Route path="/doctor/appointments/details/:id" element={<AppointmentDetails />} />
             </Routes>
         </BrowserRouter>
     )
