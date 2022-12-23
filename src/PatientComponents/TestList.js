@@ -34,6 +34,9 @@ const TestList = () => {
             <div style={{color:"red"}}>
                 {val}
             </div>
+            <h3>
+                Available Tests
+            </h3>
             <table border="1">
                 <thead>
                     <tr>

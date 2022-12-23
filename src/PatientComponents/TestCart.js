@@ -5,6 +5,10 @@ import TotalAmount from "./TotalAmount";
 const TestCart = () => {
     const [testcart, setTestcart] = useState([]);
     const [user, setUser] = useState("");
+    const [doc, setdoc] = useState("Self");
+    const [doctors, setdoctors] = useState([]);
+    const [bill, setBill] = useState(0);
+    const [id, setId] = useState(0);
     const [succ, setSucc] = useState([]);
 
     useEffect(() => {
@@ -19,22 +23,56 @@ const TestCart = () => {
         }, (err) => {
             debugger;
         })
-    }, [])
+
+        axiosConfig.get("/patient/testcarts/total").then((rsp) => {
+            setBill(rsp.data);
+            debugger
+        }, (err) => {
+
+        })
+        axiosConfig.get("/doctors").then((rsp) => {
+            setdoctors(rsp.data);
+            debugger;
+        }, (err) => {
+            debugger;
+        })
+    },[])
     const handleSubmit = () => {
         axiosConfig.get("/testtransactions/add").then((rsp) => {
-            window.location.href="/patient/transactions";
+            window.location.href = "/patient/transactions";
             debugger
         }, (err) => {
             debugger
+        })
+    }
+
+    const Remove = () => {
+        axiosConfig.get(`/testcarts/delete/${id}`).then((rsp) => {
+            debugger;
+        }, (err) => {
+            debugger;
         })
     }
     return (
         <div style={{ marginLeft: "10px" }}>
             <Navbar />
             <fieldset style={{ width: "50%", margin: "10px" }}>
-                Selected Tests for {user}
+                <span>
+                    Selected Tests for {user}
+                </span>
+                <div style={{ textAlign: "right" }}>
+                    Reference:
+                    <select>
+                        <option>Self</option>
+                        {
+                            doctors.map((d) =>
+                                <option key={d.Id} onClick={()=>{setdoc(d.Id);}}>{d.Name}</option>
+                            )
+                        }
+                    </select>
+                </div>
             </fieldset>
-            <table border="1">
+            <table border="1" style={{ margin: "10px" }}>
                 <thead>
                     <tr>
                         <th>Test Name</th>
@@ -47,13 +85,16 @@ const TestCart = () => {
                             <tr key={test.Id}>
                                 <td>{test.TestDTO.Name}</td>
                                 <td>{test.TestDTO.Price} Bdt.</td>
+                                <td><button onClick={() => { setId(test.Id); Remove(); }}>Remove</button></td>
                             </tr>
                         )
                     }
                 </tbody>
             </table>
 
-            <TotalAmount />
+            <div>
+                Total Bill = {bill} Bdt.
+            </div>
 
             <br />
             <button onClick={() => { handleSubmit() }}>ORDER</button>
