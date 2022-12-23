@@ -38,7 +38,8 @@ const TestCart = () => {
         })
     },[])
     const handleSubmit = () => {
-        axiosConfig.get("/testtransactions/add").then((rsp) => {
+        const data = {Reference:doc};
+        axiosConfig.post("/testtransactions/add",data).then((rsp) => {
             window.location.href = "/patient/transactions";
             debugger
         }, (err) => {
