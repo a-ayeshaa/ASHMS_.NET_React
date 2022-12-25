@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../AllUserComponents/axiosConfig";
+import Topbar from "../AllUserComponents/Topbar";
+import moment from "moment";
 //import Config from "./Config";
 
 const ViewAppointment = () => {
@@ -10,7 +12,7 @@ const ViewAppointment = () => {
     axiosConfig.get("/doctor/appointments").then(
       (rsp) => {
         setAppointments(rsp.data.Appointments);
-        setDoctor(rsp.data.Name);
+        setDoctor(rsp.data);
         //setPatients(rsp.data.Appointments[0].Patient.Name);
         debugger;
       },
@@ -21,7 +23,18 @@ const ViewAppointment = () => {
   }, []);
   return (
     <div>
-      <table border="1">
+      <div>
+        <fieldset style={{ margin: "15px" }}>
+          <div style={{ display: "inline-block" }} align="left">
+            {doctor.Name}
+          </div>
+          <br />
+          <div style={{ display: "inline-block" }}>
+            <b>Appointment List</b>
+          </div>
+        </fieldset>
+      </div>
+      <table border="1" style={{ width: "100%" }}>
         <thead>
           <tr>
             {/* <th>Doctor_id</th> */}
@@ -38,8 +51,12 @@ const ViewAppointment = () => {
             <tr key={app.Id}>
               {/* <td>{doctor}</td> */}
               <td>{app.Patient.Name}</td>
-              <td>{app.startedAt}</td>
-              <td>{app.endedAt}</td>
+              <td>{moment(app.startedAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
+              <td>
+                {app.endedAt != null
+                  ? moment(app.endedAt).format("MMMM Do YYYY, h:mm:ss a")
+                  : "N/A"}
+              </td>
               <td>{app.status}</td>
               <td>{app.revisit_count}</td>
               <td>

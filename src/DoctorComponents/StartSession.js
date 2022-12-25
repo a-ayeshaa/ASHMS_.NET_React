@@ -6,10 +6,11 @@ import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
 import Navbar from "../AllUserComponents/Navbar";
 import ReactSearchBox from "react-search-box";
+import { NavigBar } from "./buttons/NavigBar";
 const StartSession = () => {
   const { id } = useParams();
   const [appointment, setAppointments] = useState([]);
-  const [prescription, setPrescription] = useState([]);
+  //   const [prescription, setPrescription] = useState([]);
   const [value, setValue] = useState("");
   const [medId, setMedId] = useState("");
   const [doze, setDoze] = useState("");
@@ -20,11 +21,12 @@ const StartSession = () => {
   const [On_evaluation, setEval] = useState([]);
   const [Deduction, setDed] = useState([]);
   const [Advancement, setAdv] = useState([]);
-  
+  var prescription = null;
+
   const [medicines, setMedicines] = useState([]);
   const [pmeds, setPmeds] = useState([]);
   const [pmedname, setPmedname] = useState([]);
-  const [onemed, setOneMed] = useState([]);
+  //   const [onemed, setOneMed] = useState([]);
   //const [con, setCon] = useState("false"));
 
   useEffect(() => {
@@ -86,28 +88,42 @@ const StartSession = () => {
       debugger;
       axiosConfig.post("/prescriptions/add", pres).then(
         (rsp) => {
-          setPrescription(rsp.data);
+          prescription = rsp.data.Id;
           debugger;
+          for (let i = 0; i < pmeds.length; i++) {
+            pmeds[i].Prescription_Id = rsp.data.Id;
+            debugger;
+            axiosConfig.post("medprescriptions/add", pmeds[i]).then(
+              (rsp) => {
+                //   setPrescription(rsp.data);
+                debugger;
+              },
+              (err) => {
+                debugger;
+              }
+            );
+          }
+          appointment.status = "Complete";
+          axiosConfig.post(`appointments/update/${appointment.Id}`, appointment).then(
+            (rsp) => {
+              //   setPrescription(rsp.data);
+              window.location.href = "/doctor/appointments";
+              debugger;
+            },
+            (err) => {
+              debugger;
+            }
+          );
+          
         },
         (err) => {
           debugger;
         }
       );
 
-      for (let i = 0; i < pmeds.length; i++) {
-        pmeds[i] = {
-          Prescription_Id: prescription.Id,
-        };
-        axiosConfig.post("medprescriptions/add", pmeds[i]).then(
-          (rsp) => {
-            //   setPrescription(rsp.data);
-            debugger;
-          },
-          (err) => {
-            debugger;
-          }
-        );
-      }
+
+
+
     } else {
     }
     debugger;
@@ -122,24 +138,24 @@ const StartSession = () => {
     setMedId(id);
   };
 
-  function s() {
-    setOneMed({
-      Medicine_Id: null,
-      Doze: null,
-      Continuation: null,
-      Prescription_Id: null,
-    });
-  }
+  //   function s() {
+  //     setOneMed({
+  //       Medicine_Id: null,
+  //       Doze: null,
+  //       Continuation: null,
+  //       Prescription_Id: null,
+  //     });
+  //   }
 
   const onAdd = (medid, doze, cont) => {
     // event.preventDefault();
     //console.log(value, medId);
     // s();
-    onemed = {
+    var onemed = {
       Medicine_Id: medid,
       Doze: doze,
       Continuation: cont,
-      Prescription_Id: "",
+      Prescription_Id: null,
     };
     debugger;
 
@@ -152,6 +168,7 @@ const StartSession = () => {
 
   return (
     <div>
+      <NavigBar/>
       <div style={{ display: "inline-block" }}>
         {/* <form onSubmit={handlePrescription}> */}
         <center>
@@ -254,7 +271,10 @@ const StartSession = () => {
                       })
                       .map((item) => (
                         <div
-                          onClick={() => onSearch(item.Name, item.Id)}
+                          onClick={() => {
+                            setMedId(item.Id);
+                            onSearch(item.Name, item.Id);
+                          }}
                           className="dropdown-row"
                           key={item.Id}
                         >
@@ -318,7 +338,7 @@ const StartSession = () => {
           <legend>Prescribed Medicines</legend>
           <ol>
             {pmedname.map((item) => (
-              <li>{item}</li>
+              <li key={item}>{item}</li>
             ))}
           </ol>
         </fieldset>

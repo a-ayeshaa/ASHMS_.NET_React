@@ -32,6 +32,13 @@ const AppointmentDetails = () => {
 
   return (
     <div>
+        <div>
+        <center>
+          <fieldset style={{ margin: "15px" }}>
+            <b>Appointment Details</b>
+          </fieldset>
+        </center>
+      </div>
       <table border="1">
         <tr>
           <td>
