@@ -212,11 +212,19 @@ const StartSession = () => {
         </form>
       </div>
 
-      <div style={{ display: "inline-block" , verticalAlign:"top", marginLeft:"50px"}}>
+      <div
+        style={{
+          display: "inline-block",
+          verticalAlign: "top",
+          marginLeft: "50px",
+        }}
+      >
         <fieldset>
           <legend>Prescribed Medicines</legend>
           <ol>
-            {pmeds.map(item)}
+            {pmeds.map((item) => {
+              <li>{medicines[item].Name}</li>;
+            })}
           </ol>
         </fieldset>
       </div>
