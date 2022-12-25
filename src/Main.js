@@ -11,16 +11,17 @@ import TestList from "./PatientComponents/TestList";
 import ViewAppointments from "./DoctorComponents/ViewAppointments";
 import AppointmentDetails from "./DoctorComponents/AppointmentDetails";
 import TransactionDetails from "./PatientComponents/TransactionDetails";
+import StartSession from "./DoctorComponents/StartSession";
 const Main = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<Login />} />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-                {/* TAHMID */}
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/admin/medicines" element={<MedicineList />} />
+        {/* TAHMID */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/admin/medicines" element={<MedicineList />} />
 
                 {/* AYESHA */}
                 <Route path="/patient/doctorlist" element={<DoctorList />} />
@@ -30,11 +31,15 @@ const Main = () => {
                 <Route path="/patient/transactions" element={<Transactions />} />
                 <Route path="/patient/transactions/:ID" element={<TransactionDetails />} />
 
-                {/*SAMEEN*/}
-                <Route path="/doctor/appointments" element={<ViewAppointments />} />
-                <Route path="/doctor/appointments/details/:id" element={<AppointmentDetails />} />
-            </Routes>
-        </BrowserRouter>
-    )
-}
+        {/*SAMEEN*/}
+        <Route path="/doctor/appointments" element={<ViewAppointments />} />
+        <Route
+          path="/doctor/appointments/details/:id"
+          element={<AppointmentDetails />}
+        />
+        <Route path="/doctor/startsession/:id" element={<StartSession />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 export default Main;
