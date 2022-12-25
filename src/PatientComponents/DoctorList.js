@@ -16,7 +16,6 @@ const DoctorList = () => {
     }, [])
     return (
         <div>
-            <Logout/>
             <Navbar />
             <center>
                 <table border="1">
