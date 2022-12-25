@@ -20,7 +20,7 @@ const StartSession = () => {
   const [On_evaluation, setEval] = useState([]);
   const [Deduction, setDed] = useState([]);
   const [Advancement, setAdv] = useState([]);
-
+  
   const [medicines, setMedicines] = useState([]);
   const [pmeds, setPmeds] = useState([]);
   const [pmedname, setPmedname] = useState([]);
