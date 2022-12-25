@@ -28,7 +28,7 @@ const Main = () => {
                 <Route path="/patient/testlist" element={<TestList />} />
                 <Route path="/patient/testcart" element={<TestCart />} />
                 <Route path="/patient/transactions" element={<Transactions />} />
-                <Route path="/patient/transactions/:id" element={<TransactionDetails />} />
+                <Route path="/patient/transactions/:ID" element={<TransactionDetails />} />
 
                 {/*SAMEEN*/}
                 <Route path="/doctor/appointments" element={<ViewAppointments />} />

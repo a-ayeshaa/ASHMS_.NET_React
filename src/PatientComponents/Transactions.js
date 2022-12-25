@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import Navbar from "./Navbar";
+import moment from "moment/moment";
 
 const Transactions = () => {
     const [transaction, setTransaction] = useState([]);
@@ -53,7 +54,7 @@ const Transactions = () => {
                                     <td>{t.Reference}</td>
                                     <td>{t.Total} Bdt</td>
                                     <td>{t.Status}</td>
-                                    <td>{t.Date}</td>
+                                    <td>{moment(t.Date).format("Do MMMM YYYY")}</td>
                                     <td>{t.Report_Delivered}</td>
                                     <td>
                                         <button onClick={()=>{setId(t.Id);viewTransaction();}} onMouseOver={() => { setId(t.Id); ViewItems(); }} >
