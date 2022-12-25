@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import Navbar from "./Navbar";
-import TotalAmount from "./TotalAmount";
+
 const TestCart = () => {
     const [testcart, setTestcart] = useState([]);
     const [user, setUser] = useState("");
@@ -36,7 +36,7 @@ const TestCart = () => {
         }, (err) => {
             debugger;
         })
-    },[])
+    },[testcart])
     const handleSubmit = () => {
         const data = {Reference:doc};
         axiosConfig.post("/testtransactions/add",data).then((rsp) => {
@@ -50,6 +50,7 @@ const TestCart = () => {
     const Remove = () => {
         axiosConfig.get(`/testcarts/delete/${id}`).then((rsp) => {
             debugger;
+            
         }, (err) => {
             debugger;
         })

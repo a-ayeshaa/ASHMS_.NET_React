@@ -3,30 +3,33 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import moment from "moment/moment";
+import GenericPdfDownloader from "./GenericPdfDownloader";
+
 const TransactionDetails = () => {
-    const { id } = useParams();
+    const { ID } = useParams();
     const [transaction, setTransaction] = useState([]);
     const [tran, setTran] = useState([]);
     const [patient, setPatient] = useState([]);
     useEffect(() => {
-        axiosConfig.get(`/testtransaction/patient/details/${id}`).then((rsp) => {
+        axiosConfig.get(`/testtransaction/patient/details/${ID}`).then((rsp) => {
             setTransaction(rsp.data);
             setPatient(rsp.data.Patient);
             debugger;
         }, (err) => {
             debugger;
         })
-        axiosConfig.get(`/testcarts/transaction/${id}`).then((rsp) => {
+        axiosConfig.get(`/testcarts/transaction/${ID}`).then((rsp) => {
             setTran(rsp.data);
             debugger;
         }, (err) => {
             debugger;
         })
     }, [])
+  
     return (
         <div>
             <Navbar />
-            <fieldset style={{ width: "70%" }}>
+            <fieldset style={{ width: "70%" }} id={"report"}>
                 <legend style={{ textAlign: "center" }}>Receipt#{transaction.Id}</legend>
                 <fieldset>
                     <div style={{ display: "inline-block", paddingRight: "300px" }}>
@@ -73,6 +76,7 @@ const TransactionDetails = () => {
 
                 </fieldset>
             </fieldset>
+            <GenericPdfDownloader downloadFileName={"Receipt"} rootElementId={"report"}/>
         </div>
     )
 }
