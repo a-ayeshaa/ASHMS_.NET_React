@@ -22,15 +22,9 @@ const Login = () => {
                         if (rsp.data.Role === "Patient") {
                             window.location.href = "/patient/doctorlist";
                         }
-                        // else if (rsp.data.u_type == "CUSTOMER") {
-                        //     window.location.href = "/customer/home";
-                        // }
-                        // else if (rsp.data.u_type == "MANAGER") {
-                        //     window.location.href = "/manager/home";
-                        // }
-                        else if(rsp.data.Role === "Doctor")
-                        {
-                            window.location.href = "/doctor/appointments";   
+
+                        else if (rsp.data.Role === "Doctor") {
+                            window.location.href = "/doctor/appointments";
                         }
                     }, (error) => {
                         debugger;
@@ -60,7 +54,9 @@ const Login = () => {
                         </form>
                     </center>
                 </fieldset>
-                {errs.msg}
+                <span style={{color:"red"}}>
+                    {errs}
+                </span>
                 <br /><br />
                 <a href="/forgotpassword">FORGOT PASSWORD ?</a>
             </center>
