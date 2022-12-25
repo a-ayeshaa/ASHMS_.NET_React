@@ -2,6 +2,11 @@ import React from 'react'
 
 export const NavigBar = () => {
   return (
-    <div><a href='/doctor/appointments'>Home</a></div>
+    <fieldset style={{ margin: "10px" }}>
+      <b>
+        <a href='/doctor/appointments'>Home</a>
+      </b>
+
+    </fieldset>
   )
 }

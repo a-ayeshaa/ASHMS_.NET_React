@@ -8,6 +8,9 @@ const ViewAppointment = () => {
   //<Config/>
   const [appointments, setAppointments] = useState([]);
   const [doctor, setDoctor] = useState([]);
+  const [Id, setId] = useState("");
+  const [err, setErr] = useState("");
+
   useEffect(() => {
     axiosConfig.get("/doctor/appointments").then(
       (rsp) => {
@@ -20,7 +23,15 @@ const ViewAppointment = () => {
         debugger;
       }
     );
+
   }, []);
+  const checkPres = () => {
+    axiosConfig.get(`/patient/${Id}/prescription`).then((rsp) => {
+      window.location.href = `/doctor/prescription/${Id}`;
+    }, (Err) => {
+      setErr("No prescriptions available");
+    })
+  }
   return (
     <div>
       <div>
@@ -64,10 +75,19 @@ const ViewAppointment = () => {
                   See Details
                 </a>
               </td>
+              <td>
+                {
+                  app.status == "Complete"
+                    ? <button onClick={() => { setId(app.Id); checkPres(); }}>Prescription</button>
+
+                    : ""
+                }
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+     
     </div>
   );
 };

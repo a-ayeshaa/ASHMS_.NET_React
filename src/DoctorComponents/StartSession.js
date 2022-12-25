@@ -7,6 +7,7 @@ import { data } from "autoprefixer";
 import Navbar from "../AllUserComponents/Navbar";
 import ReactSearchBox from "react-search-box";
 import { NavigBar } from "./buttons/NavigBar";
+import Logout from "../AllUserComponents/Logout";
 const StartSession = () => {
   const { id } = useParams();
   const [appointment, setAppointments] = useState([]);
@@ -168,8 +169,9 @@ const StartSession = () => {
 
   return (
     <div>
+      <Logout/>
       <NavigBar/>
-      <div style={{ display: "inline-block" }}>
+      <div style={{ display: "inline-block" , margin:"10px"}}>
         {/* <form onSubmit={handlePrescription}> */}
         <center>
           <table>

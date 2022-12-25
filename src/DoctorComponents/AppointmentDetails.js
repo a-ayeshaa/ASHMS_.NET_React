@@ -6,6 +6,8 @@ import StartApp from "./buttons/StartApp";
 import Prescription from "./buttons/Prescription";
 import Complete from "./buttons/Complete";
 import buttonSelect from "./buttons/buttonSelect";
+import Logout from "../AllUserComponents/Logout";
+import { NavigBar } from "./buttons/NavigBar";
 
 const AppointmentDetails = () => {
   const { id } = useParams();
@@ -32,6 +34,8 @@ const AppointmentDetails = () => {
 
   return (
     <div>
+      <Logout/>
+      <NavigBar/>
         <div>
         <center>
           <fieldset style={{ margin: "15px" }}>
@@ -39,7 +43,7 @@ const AppointmentDetails = () => {
           </fieldset>
         </center>
       </div>
-      <table border="1">
+      <table border="1" style={{margin:"10px"}}>
         <tr>
           <td>
             <b>Patient Name: </b>
