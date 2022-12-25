@@ -1,3 +1,5 @@
+import Logout from "../AllUserComponents/Logout";
+
 const Navbar=()=>
 {
     return(
@@ -7,6 +9,7 @@ const Navbar=()=>
                 <a href="/patient/testlist"> Test List</a> || 
                 <a href="/patient/testcart"> Test Cart</a> || 
                 <a href="/patient/transactions"> Orders </a> || 
+                <a href="/patient/appointments"> Appointments </a> ||
 
             </fieldset>
         </div>

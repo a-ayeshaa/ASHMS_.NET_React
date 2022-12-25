@@ -1,22 +1,23 @@
+import moment from "moment/moment";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import Logout from "../AllUserComponents/Logout";
 import Navbar from "./Navbar";
 
-const DoctorList = () => {
-    const [doctors, setDoctors] = useState([]);
+const Appointments = () => {
+    const [app, setApp] = useState([]);
     useEffect(() => {
-
-        axiosConfig.get("/doctors").then((rsp) => {
-            setDoctors(rsp.data);
-            debugger;
+        axiosConfig.get("/patient/appointment/all").then((rsp) => {
+            setApp(rsp.data);
+            debugger
         }, (err) => {
             debugger;
-        });
-    }, [])
+        })
+    },[]);
     return (
         <div>
-            <Logout/>
+            
             <Navbar />
             <center>
                 <table border="1">
@@ -25,21 +26,22 @@ const DoctorList = () => {
                             <th>Doctor Name</th>
                             <th>Specialization</th>
                             <th>Degree</th>
-                            <th>Visiting Days</th>
                             <th>Session Fee</th>
+                            <th>Appointment Date</th>
+                            <th>Status</th>
 
                         </tr>
                     </thead>
                     {
-                        doctors.map((doc) =>
+                        app.map((doc) =>
                             <tbody>
                                 <tr key={doc.Id}>
-                                    <td>{doc.Name}</td>
-                                    <td>{doc.Specialization}</td>
-                                    <td>{doc.Degree}</td>
-                                    <td>{doc.VisitingDays}</td>
-                                    <td>{doc.Appointment_Fees} Bdt</td>
-                                    <td><a href={`/patient/doctorlist/${doc.Id}`}>Book Appointment</a></td>
+                                    <td>{doc.Doctor.Name}</td>
+                                    <td>{doc.Doctor.Specialization}</td>
+                                    <td>{doc.Doctor.Degree}</td>
+                                    <td>{doc.Doctor.Appointment_Fees} Bdt</td>
+                                    <td>{moment(doc.startedAt).format("dddd, MMMM Do YYYY")}</td>
+                                    <td>{doc.status}</td>
                                 </tr>
                             </tbody>
                         )
@@ -50,4 +52,4 @@ const DoctorList = () => {
     )
 }
 
-export default DoctorList;
+export default Appointments;
