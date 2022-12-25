@@ -63,11 +63,11 @@ const TestCart = () => {
                 </span>
                 <div style={{ textAlign: "right" }}>
                     Reference:
-                    <select>
+                    <select onChange={(e)=>{setdoc(e.target.value)}}>
                         <option>Self</option>
                         {
                             doctors.map((d) =>
-                                <option key={d.Id} onClick={()=>{setdoc(d.Id);}}>{d.Name}</option>
+                                <option key={d.Id} value={d.Name} >{d.Name}</option>
                             )
                         }
                     </select>

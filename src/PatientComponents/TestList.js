@@ -38,7 +38,7 @@ const TestList = () => {
                 Available Tests
             </h3>
             <table border="1">
-                <thead>
+                <thead >
                     <tr>
                         <th>Test Name</th>
                         <th>Price</th>
@@ -49,7 +49,7 @@ const TestList = () => {
                     tests.map((test) =>
                         <tr key={test.Id}>
                             <td>{test.Name}</td>
-                            <td>{test.Price}</td>
+                            <td>{test.Price} Bdt</td>
                             <td>
                                 <form onSubmit={AddtoCart}>
                                     <input type="submit" onClick={(e)=>{setId(test.Id);setVal(test.Name+" has been added to cart")}} name="addtoCart" value="ORDER"/>
