@@ -58,7 +58,7 @@ const Login = () => {
                     {errs}
                 </span>
                 <br /><br />
-                <a href="/forgotpassword">FORGOT PASSWORD ?</a>
+                {/* <a href="/forgotpassword">FORGOT PASSWORD ?</a> */}
             </center>
         </div>
     )

@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 
 const Appointments = () => {
     const [app, setApp] = useState([]);
+    const [err, setErr] = useState("");
+    const [Id, setId] = useState("");
     useEffect(() => {
         axiosConfig.get("/patient/appointment/all").then((rsp) => {
             setApp(rsp.data);
@@ -15,6 +17,13 @@ const Appointments = () => {
             debugger;
         })
     },[]);
+    const checkPres=()=>{
+        axiosConfig.get(`/patient/${Id}/prescription`).then((rsp)=>{
+            window.location.href=`/patient/appointments/${Id}`;
+        },(Err)=>{
+            setErr("No prescriptions available");
+        })
+    }
     return (
         <div>
             
@@ -42,11 +51,17 @@ const Appointments = () => {
                                     <td>{doc.Doctor.Appointment_Fees} Bdt</td>
                                     <td>{moment(doc.startedAt).format("dddd, MMMM Do YYYY")}</td>
                                     <td>{doc.status}</td>
+                                    <td>
+                                        <button onClick={()=>{setId(doc.Id);checkPres();}}>Prescription</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         )
                     }
                 </table>
+                <span style={{color:"red"}}>
+                    {err}
+                </span>
             </center>
         </div>
     )
