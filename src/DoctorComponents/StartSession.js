@@ -105,26 +105,23 @@ const StartSession = () => {
             );
           }
           appointment.status = "Complete";
-          axiosConfig.post(`appointments/update/${appointment.Id}`, appointment).then(
-            (rsp) => {
-              //   setPrescription(rsp.data);
-              window.location.href = "/doctor/appointments";
-              debugger;
-            },
-            (err) => {
-              debugger;
-            }
-          );
-          
+          axiosConfig
+            .post(`appointments/update/${appointment.Id}`, appointment)
+            .then(
+              (rsp) => {
+                //   setPrescription(rsp.data);
+                window.location.href = "/doctor/appointments";
+                debugger;
+              },
+              (err) => {
+                debugger;
+              }
+            );
         },
         (err) => {
           debugger;
         }
       );
-
-
-
-
     } else {
     }
     debugger;
@@ -169,9 +166,9 @@ const StartSession = () => {
 
   return (
     <div>
-      <Logout/>
-      <NavigBar/>
-      <div style={{ display: "inline-block" , margin:"10px"}}>
+      <Logout />
+      <NavigBar />
+      <div style={{ display: "inline-block", margin: "10px" }}>
         {/* <form onSubmit={handlePrescription}> */}
         <center>
           <table>

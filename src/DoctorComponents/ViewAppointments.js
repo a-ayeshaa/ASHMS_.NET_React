@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axiosConfig from "../AllUserComponents/axiosConfig";
 import Topbar from "../AllUserComponents/Topbar";
 import moment from "moment";
+import Logout from "../AllUserComponents/Logout";
+import { NavigBar } from "./buttons/NavigBar";
 //import Config from "./Config";
 
 const ViewAppointment = () => {
@@ -34,6 +36,8 @@ const ViewAppointment = () => {
   }
   return (
     <div>
+        <Logout/>
+        <NavigBar/>
       <div>
         <fieldset style={{ margin: "15px" }}>
           <div style={{ display: "inline-block" }} align="left">
@@ -50,10 +54,10 @@ const ViewAppointment = () => {
           <tr>
             {/* <th>Doctor_id</th> */}
             <th>Patient Name</th>
-            <th>start</th>
-            <th>ended</th>
-            <th>status</th>
-            <th>revisit count</th>
+            <th>Start</th>
+            <th>Ended</th>
+            <th>Status</th>
+            <th>Revisit count</th>
             <th>See Details</th>
           </tr>
         </thead>

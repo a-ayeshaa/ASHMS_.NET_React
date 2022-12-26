@@ -15,6 +15,7 @@ import StartSession from "./DoctorComponents/StartSession";
 import Appointments from "./PatientComponents/Appointments";
 import Prescription from "./PatientComponents/Prescription";
 import PrescriptionDoctor from "./DoctorComponents/PrescriptionDoctor";
+import { DoctorProfile } from "./DoctorComponents/DoctorProfile";
 const Main = () => {
   return (
     <BrowserRouter>
@@ -44,6 +45,7 @@ const Main = () => {
         />
         <Route path="/doctor/startsession/:id" element={<StartSession />} />
         <Route path="/doctor/prescription/:ID" element={<PrescriptionDoctor />} />
+        <Route path="/doctor/profile" element={<DoctorProfile />}/>
       </Routes>
     </BrowserRouter>
   );
